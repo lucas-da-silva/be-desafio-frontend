@@ -3,7 +3,7 @@ import "./App.css";
 import SearchIcon from "./assets/search.svg";
 import { useEffect, useState } from "react";
 import { IEmployee } from "./interfaces/IEmployee";
-import { getEmployees } from "./services/employeesService";
+import { getEmployees } from "./services";
 
 function App() {
   const [employees, setEmployees] = useState<IEmployee[]>([]);

@@ -1,4 +1,5 @@
 import { IEmployee } from "../interfaces/IEmployee";
+import { formatDate, formatPhoneNumber } from "../services";
 import "./Table.css";
 
 type TableProps = {
@@ -30,8 +31,12 @@ export function EmployeeTable({ employees }: TableProps) {
             </td>
             <td className="employee-text">{employee.name}</td>
             <td className="employee-text">{employee.job}</td>
-            <td className="employee-text">{employee.admission_date}</td>
-            <td className="employee-text">{employee.phone}</td>
+            <td className="employee-text">
+              {formatDate(employee.admission_date)}
+            </td>
+            <td className="employee-text">
+              {formatPhoneNumber(employee.phone)}
+            </td>
           </tr>
         ))}
       </tbody>
