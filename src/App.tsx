@@ -1,8 +1,17 @@
-import { Header, Table } from "./components";
+import { Header, EmployeeTable } from "./components";
 import "./App.css";
 import SearchIcon from "./assets/search.svg";
+import { useEffect, useState } from "react";
+import { IEmployee } from "./interfaces/IEmployee";
+import { getEmployees } from "./services/employeesService";
 
 function App() {
+  const [employees, setEmployees] = useState<IEmployee[]>([]);
+
+  useEffect(() => {
+    getEmployees().then((data) => setEmployees(data));
+  }, []);
+
   return (
     <main>
       <Header />
@@ -20,8 +29,7 @@ function App() {
             <img className="search-icon" src={SearchIcon} alt="Search" />
           </div>
         </div>
-
-        <Table />
+        {employees.length > 0 && <EmployeeTable employees={employees} />}
       </div>
     </main>
   );
