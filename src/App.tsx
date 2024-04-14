@@ -13,15 +13,20 @@ function App() {
     getEmployees().then((data) => setEmployees(data));
   }, []);
 
-  const filteredEmployees =
-    search.length > 0
-      ? employees.filter(
-          ({ name, job, phone }) =>
-            name.toLowerCase().includes(search.toLowerCase()) ||
-            job.toLowerCase().includes(search.toLowerCase()) ||
-            phone.toLowerCase().includes(search.toLowerCase())
-        )
-      : employees;
+  const activateInput = () => {
+    document.getElementById("search-input")?.focus();
+  };
+
+  const filterEmployees = () => {
+    return employees.filter(
+      ({ name, job, phone }) =>
+        name.toLowerCase().includes(search.toLowerCase()) ||
+        job.toLowerCase().includes(search.toLowerCase()) ||
+        phone.toLowerCase().includes(search.toLowerCase())
+    );
+  };
+
+  const filteredEmployees = search.length > 0 ? filterEmployees() : employees;
 
   return (
     <main>
@@ -29,19 +34,25 @@ function App() {
 
       <div className="content-card">
         <div className="title-card">
-          <h1 className="title">Funcionários</h1>
+          <h1 id="title">Funcionários</h1>
 
           <div className="search-card">
             <input
-              className="search-input"
+              id="search-input"
               type="text"
               placeholder="Pesquisar"
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />
-            <img className="search-icon" src={SearchIcon} alt="Search" />
+            <img
+              id="search-icon"
+              src={SearchIcon}
+              alt="Search"
+              onClick={activateInput}
+            />
           </div>
         </div>
+
         {employees.length > 0 && (
           <EmployeeTable employees={filteredEmployees} />
         )}
