@@ -1,0 +1,12 @@
+.header-card {
+  background-color: white;
+  margin-top: 12.08px;
+  height: 60px;
+  padding: 0 32px 0 32px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 44px;
+  height: 35px;
+}
