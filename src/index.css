@@ -128,7 +128,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-input {
+input,
+textarea,
+button,
+table,
+thead,
+tbody {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box; /* Firefox, other Gecko */
   box-sizing: border-box; /* Opera/IE 8+ */
