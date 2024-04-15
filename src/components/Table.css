@@ -52,3 +52,30 @@
   height: 34px;
   border-radius: 100%;
 }
+
+#empty-column {
+  margin-left: 12.5px;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 100%;
+}
+
+.arrow {
+  width: 32px;
+  height: 32px;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 650px) {
+  .table-header tr th:first-child {
+    padding-left: 20px;
+  }
+
+  .table-row td:first-child {
+    padding-left: 20px;
+  }
+}
