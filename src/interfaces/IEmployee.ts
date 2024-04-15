@@ -2,7 +2,7 @@ export interface IEmployee {
   id: number;
   name: string;
   job: string;
-  admission_date: string;
+  admissionDate: string;
   phone: string;
   image: string;
 }
