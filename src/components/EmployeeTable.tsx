@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { EmployeeTableRow } from "./EmployeeTableRow";
+import { MobileEmployeeTableRow } from "./MobileEmployeeTableRow";
 import { IEmployee } from "../interfaces/IEmployee";
-import "./Table.css";
-import ArrowDown from "../assets/arrow-down.svg";
-import ArrowUp from "../assets/arrow-up.svg";
+import "./EmployeeTable.css";
 
 type TableProps = {
   employees: IEmployee[];
@@ -14,7 +14,7 @@ export function EmployeeTable({ employees }: TableProps) {
   const [isDesktop, setIsDesktop] = useState(
     window.innerWidth > DESKTOP_MIN_WIDTH
   );
-  const [employeeDetailsId, setEmployeeDetailsId] = useState<{
+  const [employeeDetails, setEmployeeDetails] = useState<{
     [id: string]: number;
   }>({});
 
@@ -27,14 +27,14 @@ export function EmployeeTable({ employees }: TableProps) {
     return () => window.removeEventListener("resize", updateMedia);
   });
 
-  const handleEmployeeDetailsId = (id: number) => {
-    if (employeeDetailsId[id]) {
-      setEmployeeDetailsId((prevState) => {
+  const handleEmployeeDetails = (id: number) => {
+    if (employeeDetails[id]) {
+      setEmployeeDetails((prevState) => {
         delete prevState[id];
         return { ...prevState };
       });
     } else {
-      setEmployeeDetailsId((prevState) => ({ ...prevState, [id]: id }));
+      setEmployeeDetails((prevState) => ({ ...prevState, [id]: id }));
     }
   };
 
@@ -59,51 +59,35 @@ export function EmployeeTable({ employees }: TableProps) {
       </thead>
 
       <tbody className="table-body">
-        {employees.map(({ id, name, image, job, admissionDate, phone }) => (
-          <tr className="table-row" key={id}>
-            <td>
-              <img
-                className="employee-image"
-                src={image}
-                alt="Employee image"
+        {employees.map(({ id, name, image, job, admissionDate, phone }) => {
+          if (isDesktop) {
+            return (
+              <EmployeeTableRow
+                key={id}
+                id={id}
+                image={image}
+                name={name}
+                job={job}
+                admissionDate={admissionDate}
+                phone={phone}
               />
-            </td>
-            <td className="employee-text">{name}</td>
-            {isDesktop ? (
-              <>
-                <td className="employee-text">{job}</td>
-                <td className="employee-text">{admissionDate}</td>
-                <td className="employee-text">{phone}</td>
-              </>
-            ) : (
-              <td>
-                <img
-                  onClick={() => handleEmployeeDetailsId(id)}
-                  className="arrow"
-                  src={employeeDetailsId[id] ? ArrowUp : ArrowDown}
-                  alt="Arrow"
-                />
-              </td>
-            )}
+            );
+          }
 
-            {/* {employeeDetailsId[id] && (
-              <td>
-                <div>
-                  <span>Cargo</span>
-                  <span>{job}</span>
-                </div>
-                <div>
-                  <span>Data de admissão</span>
-                  <span>{admissionDate}</span>
-                </div>
-                <div>
-                  <span>Telefone</span>
-                  <span>{phone}</span>
-                </div>
-              </td>
-            )} */}
-          </tr>
-        ))}
+          return (
+            <MobileEmployeeTableRow
+              key={id}
+              id={id}
+              image={image}
+              name={name}
+              job={job}
+              admissionDate={admissionDate}
+              phone={phone}
+              isDetailsOpen={!!employeeDetails[id]}
+              handleEmployeeDetails={handleEmployeeDetails}
+            />
+          );
+        })}
       </tbody>
     </table>
   );
