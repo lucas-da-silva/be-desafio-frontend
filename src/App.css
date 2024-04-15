@@ -5,8 +5,8 @@
 }
 
 .title-card {
-  padding-top: 44px;
   display: flex;
+  padding-top: 44px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
@@ -53,4 +53,19 @@
 
 #search-icon:hover {
   cursor: text;
+}
+
+@media only screen and (max-width: 650px) {
+  .title-card {
+    display: block;
+    padding-top: 20px;
+  }
+
+  #title {
+    margin-bottom: 36px;
+  }
+
+  #search-input {
+    width: 100%;
+  }
 }

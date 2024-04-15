@@ -8,7 +8,6 @@ import { getEmployees } from "./services";
 function App() {
   const [employees, setEmployees] = useState<IEmployee[]>([]);
   const [search, setSearch] = useState<string>("");
-
   useEffect(() => {
     getEmployees().then((data) => setEmployees(data));
   }, []);
