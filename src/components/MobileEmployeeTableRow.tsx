@@ -20,7 +20,7 @@ export function MobileEmployeeTableRow({
 }: MobileEmployeeTableRowProps) {
   return (
     <>
-      <tr className="table-row" id="mobile-table-row">
+      <tr className="table-row">
         <td>
           <img className="employee-image" src={image} alt="Employee image" />
         </td>
