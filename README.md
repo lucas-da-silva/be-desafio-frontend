@@ -2,7 +2,9 @@
 
 ## Descrição
 
-O projeto consiste em um homepage com uma tabela de funcionários, onde é possível visualizar e filtrar os funcionários. É responsivo para telas menores com um design elegante e moderno.
+O projeto é uma plataforma que apresenta uma tabela dinâmica de funcionários, oferecendo aos usuários a capacidade de visualizar e filtrar os dados dos colaboradores pelo nome, trabalho ou telefone de forma eficiente.
+
+Com um design responsivo, ele se adapta perfeitamente a telas menores, proporcionando uma experiência elegante e moderna em dispositivos móveis.
 
 ## Bibliotecas utilizadas
 
